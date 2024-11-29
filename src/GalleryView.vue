@@ -1,22 +1,17 @@
 <script setup>
 import {Gallery} from "vue-preview-imgs";
 import {ref} from "vue";
-import {onMounted} from "vue";
+import {GalleryImporter} from "@/gallery-import.js";
 const props = defineProps({
   id: String
 })
-let list = ref({})
-onMounted(async () => {
-  list.value = (await import(/* @vite-ignore */ "./guides/" + props.id + ".json")).default;
-})
-
-
+let list = ref(GalleryImporter(props.id))
 
 </script>
 
 <template>
   <nav>
-    <RouterLink to="/">Go back </RouterLink>
+    <RouterLink to="/">Go back</RouterLink>
   </nav>
   <main>
     <h3>Anleitung - {{props.id}}.12.</h3>

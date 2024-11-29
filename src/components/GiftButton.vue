@@ -11,7 +11,7 @@ const icon = ref(iconArray);
 let color = "#000000"
 const iconOptionsArray = ["heart", "mug-hot", "cookie-bite", "snowman", "sleigh", "candy-cane"]
 const colorArray = ["#FFCCCC", "#D2691E", "#D2B48C"]
-if (gift.value === "true") {
+if (gift.opened === "true") {
   icon.value[1] = iconOptionsArray[Math.floor(Math.random() * iconOptionsArray.length)];
   color = colorArray[Math.floor(Math.random() * colorArray.length)];
 }

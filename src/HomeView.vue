@@ -3,31 +3,30 @@ import GiftButton from "@/components/GiftButton.vue";
 import {ref} from "vue";
 import router from "@/router.js";
 let data = [
-  { id: 1, value: false},
-  { id: 2, value: false},
-  { id: 3, value: false},
-  { id: 4, value: false},
-  { id: 5, value: false},
-  { id: 6, value: false},
-  { id: 7, value: false},
-  { id: 8, value: false},
-  { id: 9, value: false},
-  { id: 10, value: false},
-  { id: 11, value: false},
-  { id: 12, value: false},
-  { id: 13, value: false},
-  { id: 14, value: false},
-  { id: 15, value: false},
-  { id: 16, value: false},
-  { id: 17, value: false},
-  { id: 18, value: false},
-  { id: 19, value: false},
-  { id: 20, value: false},
-  { id: 21, value: false},
-  { id: 22, value: false},
-  { id: 23, value: false},
-  { id: 24, value: false},
-  { id: 29, value: false}
+  { id: 1, opened: false},
+  { id: 2, opened: false},
+  { id: 3, opened: false},
+  { id: 4, opened: false},
+  { id: 5, opened: false},
+  { id: 6, opened: false},
+  { id: 7, opened: false},
+  { id: 8, opened: false},
+  { id: 9, opened: false},
+  { id: 10, opened: false},
+  { id: 11, opened: false},
+  { id: 12, opened: false},
+  { id: 13, opened: false},
+  { id: 14, opened: false},
+  { id: 15, opened: false},
+  { id: 16, opened: false},
+  { id: 17, opened: false},
+  { id: 18, opened: false},
+  { id: 19, opened: false},
+  { id: 20, opened: false},
+  { id: 21, opened: false},
+  { id: 22, opened: false},
+  { id: 23, opened: false},
+  { id: 24, opened: false}
 ]
 function shuffle(array) {
   let currentIndex = array.length;
@@ -49,20 +48,17 @@ shuffle(data);
 
 for (let el of data) {
   if (!localStorage.getItem(el.id)) {
-    localStorage.setItem(el.id.toString(), el.value.toString());
+    localStorage.setItem(el.id.toString(), el.opened.toString());
   }
-}
-for (let el of data) {
-  el.value = localStorage.getItem(el.id.toString());
+  el.opened = localStorage.getItem(el.id.toString());
 }
 console.log(data)
 
 function unwrapGift(item) {
   localStorage.setItem(item.id.toString(), "true");
-  item.value = localStorage.getItem(item.id.toString());
+  item.opened = localStorage.getItem(item.id.toString());
 
 }
-console.log(data)
 const gifts = ref(data)
 function getDayPart() {
   const currentDate = new Date(); // Get the current date
@@ -88,14 +84,19 @@ function goToGallery(item) {
 </script>
 
 <template>
-  <ul>
-    <GiftButton
-        v-for="item in gifts"
-        :gift="item"
-        :key="item.id"
-        @click="goToGallery(item)"
-    ></GiftButton>
-  </ul>
+  <h1>
+    Adventskalender 2024
+  </h1>
+  <main class="main">
+    <ul>
+      <GiftButton
+          v-for="item in gifts"
+          :gift="item"
+          :key="item.id"
+          @click="goToGallery(item)"
+      ></GiftButton>
+    </ul>
+  </main>
 </template>
 
 <style scoped>
@@ -108,5 +109,4 @@ ul {
   margin: 0;
   list-style: none; /* Remove bullet points */
 }
-
 </style>
