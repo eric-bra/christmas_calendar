@@ -71,7 +71,7 @@ function getMonthPart() {
 
 function goToGallery(item) {
   console.log("I'm doing something!!")
-  if (getDayPart().toString() < item.id && getMonthPart().toString() !== "12") {
+  if (getDayPart().toString() < item.id || getMonthPart().toString() !== "11") {
     console.log("Not this time of the year yet!")
     return;
   }
