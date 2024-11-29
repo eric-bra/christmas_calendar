@@ -64,10 +64,14 @@ function getDayPart() {
   const currentDate = new Date(); // Get the current date
   return currentDate.getDate();  // Return the day of the month (1-31)
 }
+function getMonthPart() {
+  const currentDate = new Date();
+  return currentDate.getMonth() + 1;
+}
 
 function goToGallery(item) {
   console.log("I'm doing something!!")
-  if (getDayPart().toString() < item.id) {
+  if (getDayPart().toString() < item.id && getMonthPart().toString() !== "12") {
     console.log("Not this time of the year yet!")
     return;
   }
